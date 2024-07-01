@@ -20,6 +20,9 @@ import { Task } from './task/task.entity';
       database: process.env.DB_NAME,
       synchronize: process.env.DB_SYNC === 'true',
       entities: [Task],
+      ssl: {
+        rejectUnauthorized: false,
+      },
     }),
     TaskModule,
   ],
