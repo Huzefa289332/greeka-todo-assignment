@@ -12,9 +12,10 @@ import {
 import { CreateTaskDto } from './dto/create-task.dto';
 import { TaskService } from './task.service';
 import { UpdateTaskDto } from './dto/update-task.dto';
-import { query } from 'express';
 import { GetAllTasksDto } from './dto/get-all-tasks.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Task')
 @Controller({ version: '1', path: 'task' })
 export class TaskController {
   constructor(private taskService: TaskService) {}
