@@ -1,7 +1,6 @@
 import {
   IsBoolean,
   IsDateString,
-  IsEnum,
   IsIn,
   IsNotEmpty,
   IsOptional,
@@ -12,18 +11,18 @@ import { TaskStatus } from '../constants/task-status.enum';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 
 export class UpdateTaskDto {
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ example: 'Task 1' })
   @IsOptional()
   @IsString()
   @IsNotEmpty()
   name: string;
 
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ example: '2024-07-01T19:37:58.172Z' })
   @IsOptional()
   @IsDateString()
   dueDate: string;
 
-  @ApiPropertyOptional({ enum: TaskStatus })
+  @ApiPropertyOptional({ example: TaskStatus.PAUSED, enum: () => TaskStatus })
   @IsOptional()
   @IsIn([
     TaskStatus.PENDING,
@@ -33,12 +32,12 @@ export class UpdateTaskDto {
   ])
   status: TaskStatus;
 
-  @ApiPropertyOptional({ enum: TaskPriority })
+  @ApiPropertyOptional({ example: TaskPriority.HIHG, enum: () => TaskPriority })
   @IsOptional()
   @IsIn([TaskPriority.HIHG, TaskPriority.MEDIUM, TaskPriority.NORMAL])
   priority: TaskPriority;
 
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ example: true })
   @IsOptional()
   @IsBoolean()
   isActive: boolean;
