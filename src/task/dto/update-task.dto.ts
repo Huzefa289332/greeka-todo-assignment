@@ -2,6 +2,7 @@ import {
   IsBoolean,
   IsDateString,
   IsEnum,
+  IsIn,
   IsNotEmpty,
   IsOptional,
   IsString,
@@ -24,12 +25,17 @@ export class UpdateTaskDto {
 
   @ApiPropertyOptional({ enum: TaskStatus })
   @IsOptional()
-  @IsEnum({ enum: TaskStatus })
+  @IsIn([
+    TaskStatus.PENDING,
+    TaskStatus.DONE,
+    TaskStatus.IN_PROGRESS,
+    TaskStatus.PAUSED,
+  ])
   status: TaskStatus;
 
   @ApiPropertyOptional({ enum: TaskPriority })
   @IsOptional()
-  @IsEnum({ enum: TaskPriority })
+  @IsIn([TaskPriority.HIHG, TaskPriority.MEDIUM, TaskPriority.NORMAL])
   priority: TaskPriority;
 
   @ApiPropertyOptional()
